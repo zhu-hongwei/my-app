@@ -2,19 +2,31 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 
+// 渲染了一个单独的 < button >
 class Square extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      value: null,
+    }
+  }
+
   render() {
     return (
-      <button className="square">
-        {/* TODO */}
+      <button
+        className="square"
+        onClick={() => this.setState({ value: "X" })}
+      >
+        {this.state.value}
       </button>
     );
   }
 }
 
+// 9 个方块
 class Board extends React.Component {
   renderSquare(i) {
-    return <Square />;
+    return <Square value={i} />;
   }
 
   render() {
@@ -43,6 +55,7 @@ class Board extends React.Component {
   }
 }
 
+// 含有默认值的一个棋盘
 class Game extends React.Component {
   render() {
     return (
